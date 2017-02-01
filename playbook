@@ -5,15 +5,15 @@
     become: yes
     become_method: sudo
   - name : clone shurik4995/spring-petclinic.git 
-    git: repo=https://github.com/shurik4995/spring-petclinic.git dest=/home/ec2-user/workspace/clinic
+    git: repo=https://github.com/shurik4995/spring-petclinic.git update=no dest=/home/ec2-user/workspace/clinic
   - name : clone https://github.com/shurik4995/devops.git
-    git: repo=https://github.com/shurik4995/devops.git  dest=/home/ec2-user/workspace/devops
+    git: repo=https://github.com/shurik4995/devops.git update=no  dest=/home/ec2-user/workspace/devops
   - name: install git
     yum: name=docker state=latest
     become: yes
     become_method: sudo
   - name: add docker group to ec2-ser
-    user: name=ec2-user comment=ec2-user group=docker
+    user: name=ec2-user comment=ec2-user groups=docker append=yes
     become: yes
     become_method: sudo
   - name: start docker service
