@@ -22,3 +22,10 @@
     become_method: sudo 
   - name: download maven
     unarchive: src=http://apache.mivzakim.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz  dest=/home/ec2-user/  copy=no creates=/home/ec2-user/apache-maven-3.3.9
+  - name: add env to mashine M2_HOME=/home/ec2-user/apache-maven-3.3.9
+    lineinfile: line=M2_HOME=/home/ec2-user/apache-maven-3.3.9 dest=/home/ec2-user/.bashrc
+  - name: add M2=$M2_HOME
+    lineinfile: line=M2=$M2_HOME/bin dest=/home/ec2-user/.bashrc
+  - name : add PATH=$M2:$PATH
+    lineinfile: line=PATH=$M2:$PATH dest=/home/ec2-user/.bashrc
+
